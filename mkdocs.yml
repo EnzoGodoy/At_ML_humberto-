@@ -1,8 +1,8 @@
 site_name: Entrega
 site_author: Ycakraft
-# site_url: https://hsandmann.github.io/documentation.template
-repo_url: ttps://github.com/Ycakraft/Machine-Learning---Atividades
-repo_name: Machine-Learning---Atividades
+site_url: https://EnzoGodoy.github.io/At_ML_humberto
+repo_url: ttps://github.com/EnzoGodoy/At_ML_humberto.git
+repo_name: At_ML_humberto
 
 
 theme:
