@@ -140,5 +140,5 @@ nav:
     - Roteiro 3: ./roteiro 3/main.md
     - Roteiro 4: ./roteiro 4/main.md
   - Projeto: ./projeto/main.md
-  - Atividades Enrico:
-    - Decision Tree: ./Decision Tree/main.md
+  - Atividades:
+    - Decision Tree: ./Decision-Tree/main.md

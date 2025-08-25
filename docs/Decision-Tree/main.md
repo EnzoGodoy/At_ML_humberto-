@@ -23,6 +23,12 @@ O script irá baixar automaticamente o arquivo do Kaggle (se necessário), reali
 
 ## Visualização da Árvore de Decisão
 
-![Árvore de Decisão](decision_tree.png)
+``` python exec="on" html="1"
+--8<--"./docs/Decision-Tree/decision_tree_f1.py"
+```
 
 ## Fonte
+
+``` python exec="on" html="1"
+--8<-- "./docs\Decision-Tree\decision_tree_f1.py"
+```
