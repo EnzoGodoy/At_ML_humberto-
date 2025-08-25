@@ -1,5 +1,7 @@
 import pandas as pd
 import os
+from sklearn import tree
+import matplotlib.pyplot as plt
 
 # Baixar o arquivo do Kaggle (executa só se não existir)
 if not os.path.exists('constructor_results.csv'):
@@ -29,3 +31,9 @@ clf = DecisionTreeClassifier()
 clf.fit(X_train, y_train)
 y_pred = clf.predict(X_test)
 print(classification_report(y_test, y_pred))
+
+# Salvar a árvore como imagem
+plt.figure(figsize=(16,8))
+tree.plot_tree(clf, feature_names=X.columns, filled=True)
+plt.savefig("decision_tree.png")
+plt.close()

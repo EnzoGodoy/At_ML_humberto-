@@ -21,4 +21,8 @@ O script irá baixar automaticamente o arquivo do Kaggle (se necessário), reali
 - `decision_tree_f1.py`: Código principal do projeto.
 - `main.md`: Esta documentação.
 
+## Visualização da Árvore de Decisão
+
+![Árvore de Decisão](decision_tree.png)
+
 ## Fonte
