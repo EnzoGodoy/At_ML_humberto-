@@ -1,37 +1,59 @@
-import kagglehub
-from kagglehub import KaggleDatasetAdapter
+import matplotlib.pyplot as plt
 import pandas as pd
+from io import StringIO
+from sklearn import tree
 from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeClassifier, export_text
-from sklearn.metrics import classification_report
+from sklearn.preprocessing import LabelEncoder
 
+import kagglehub
 
-# Carregar o dataset diretamente do Kaggle
-file_path = "constructor_results.csv"
-df = kagglehub.load_dataset(
-    KaggleDatasetAdapter.PANDAS,
-    "rohanrao/formula-1-world-championship-1950-2020",
-    file_path,
+plt.figure(figsize=(12, 10))
+
+# Baixar e carregar o dataset do Kaggle
+path = kagglehub.dataset_download("rohanrao/formula-1-world-championship-1950-2020")
+df = pd.read_csv(path + "/constructor_results.csv")
+
+# Selecionar features relevantes (removendo 'statusId')
+x = df[['constructorId', 'raceId', 'points']]
+
+# Codificar variáveis categóricas
+label_encoder = LabelEncoder()
+x['constructorId'] = label_encoder.fit_transform(x['constructorId'])
+x['raceId'] = label_encoder.fit_transform(x['raceId'])
+
+# Criar variável de saída categórica baseada nos pontos
+y = pd.cut(
+    df['points'],
+    bins=[-1, 0, 10, df['points'].max()+1],  # faixas: sem pontos, poucos pontos, muitos pontos
+    labels=['sem_pontos', 'poucos_pontos', 'muitos_pontos']
 )
 
-# Pré-processamento
-def preprocess(df):
-    df['points'].fillna(df['points'].median(), inplace=True)
-    df['statusId'].fillna(df['statusId'].mode()[0], inplace=True)
-    df['position'].fillna(df['position'].median(), inplace=True)
-    features = ['constructorId', 'raceId', 'points', 'statusId', 'position']
-    return df[features], df['position']
+# Juntar features e target, remover linhas com NaN
+data = x.copy()
+data['target'] = y
+data = data.dropna()
 
-df = df.sample(n=100, random_state=42)
-X, y = preprocess(df)
+# Separar novamente features e target
+x_clean = data.drop('target', axis=1)
+y_clean = data['target']
 
-# Treinamento e avaliação
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-clf = DecisionTreeClassifier()
-clf.fit(X_train, y_train)
-y_pred = clf.predict(X_test)
-print(classification_report(y_test, y_pred))
+# Dividir em treino e teste
+x_train, x_test, y_train, y_test = train_test_split(
+    x_clean, y_clean, 
+    test_size=0.2, 
+    random_state=42
+)
 
-# Exibir a árvore como texto
-tree_rules = export_text(clf, feature_names=list(X.columns))
-print(tree_rules)
+# Treinar árvore de decisão
+classifier = tree.DecisionTreeClassifier()
+classifier.fit(x_train, y_train)
+
+# Avaliar o modelo
+accuracy = classifier.score(x_test, y_test)
+print(f"Accuracy: {accuracy:.2f}")
+tree.plot_tree(classifier, feature_names=x_clean.columns, filled=True)
+
+# Para imprimir na página HTML (SVG)
+buffer = StringIO()
+plt.savefig(buffer, format="svg")
+print(buffer.getvalue())
