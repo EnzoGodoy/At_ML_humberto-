@@ -14,7 +14,7 @@ from sklearn import tree
 dataset_url = "https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020"
 od.download(dataset_url)
 
-csv_path = "formula-1-world-championship-1950-2020/drivers.csv"
+csv_path = "formula-1-world-championship-1950-2020/constructor_standings.csv"
 
 
 df = pd.read_csv(csv_path)

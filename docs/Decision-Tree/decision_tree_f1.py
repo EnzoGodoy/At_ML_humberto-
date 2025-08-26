@@ -58,5 +58,4 @@ print(test[['year', 'name', 'points', 'predicted']].sort_values('predicted', asc
 # Visualizar Árvore
 plt.figure(figsize=(12, 8))
 plot_tree(model, feature_names=['prev_points'], class_names=['Não Campeão', 'Campeão'], filled=True)
-plt.title("Árvore de Decisão - Campeão de Construtores")
 plt.show()

@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
 
-df = pd.read_csv("drivers.csv")
+df = pd.read_csv("constructor_standings.csv")
 
 df = df.loc[:, ~df.columns.duplicated()]
 

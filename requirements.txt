@@ -14,5 +14,6 @@ matplotlib
 numpy
 pandas
 yfinance
-kagglehub  
-kaggle      
+opendatasets
+seaborn
+scikit-learn

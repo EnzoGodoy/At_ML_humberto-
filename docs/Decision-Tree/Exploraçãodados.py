@@ -10,7 +10,7 @@ path = kagglehub.dataset_download("rohanrao/formula-1-world-championship-1950-20
 print(" Arquivos baixados em:", path)
 
 
-file_path = os.path.join(path, "drivers.csv")
+file_path = os.path.join(path, "constructor_standings.csv")
 df = pd.read_csv(file_path)
 
 
