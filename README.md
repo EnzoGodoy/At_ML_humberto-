@@ -17,7 +17,7 @@ source ./env/bin/activate
 Instale as dependências com:
 
 ``` shell
-python3 -m pip install -r requirements.txt --upgrade
+python -m pip install -r requirements.txt --upgrade
 ```
 
 ## Deployment
