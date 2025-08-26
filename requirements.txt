@@ -14,5 +14,5 @@ matplotlib
 numpy
 pandas
 yfinance
-kaggle
-kagglehub
+kagglehub  
+kaggle      
