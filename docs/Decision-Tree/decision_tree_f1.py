@@ -5,6 +5,7 @@ from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 import kagglehub
+from io import StringIO  # <-- Necessário para usar StringIO
 
 # Baixar dataset via KaggleHub
 path = kagglehub.dataset_download("rohanrao/formula-1-world-championship-1950-2020")
@@ -59,3 +60,21 @@ print(test[['year', 'name', 'points', 'predicted']].sort_values('predicted', asc
 plt.figure(figsize=(12, 8))
 plot_tree(model, feature_names=['prev_points'], class_names=['Não Campeão', 'Campeão'], filled=True)
 plt.show()
+
+# =================================================
+# Trecho que você pediu para incluir:
+# =================================================
+# Avaliar o modelo
+y_pred = model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Acurácia: {accuracy:.2f}")
+
+# Plotar a árvore
+plt.figure(figsize=(20, 12))
+plot_tree(model, feature_names=['prev_points'], class_names=["Sem feridos", "Com feridos"], filled=True)
+plt.show()
+
+# Para imprimir na página HTML
+buffer = StringIO()
+plt.savefig(buffer, format="svg")
+print(buffer.getvalue())
