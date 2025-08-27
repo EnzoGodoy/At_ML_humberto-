@@ -1,80 +1,88 @@
+"""
+Decision Tree simples para o dataset "S&P 500" (Kaggle: camnugent/sandp500)
+Objetivo: limpar a base e treinar uma árvore de decisão para prever se o próximo dia terá alta.
+
+Passos:
+1) Baixa e carrega o dataset usando kagglehub.
+2) Limpeza básica: remove NaN, converte datas, organiza colunas.
+3) Criação de features básicas (retornos, médias móveis, volatilidade).
+4) Split temporal treino/teste.
+5) Treinamento da Decision Tree e avaliação.
+
+Dependências: pandas, numpy, scikit-learn, matplotlib, kagglehub
+"""
+
 import os
+import kagglehub
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier, plot_tree
-from sklearn.metrics import accuracy_score
-import matplotlib.pyplot as plt
-import kagglehub
-from io import StringIO  # <-- Necessário para usar StringIO
+from sklearn.metrics import accuracy_score, classification_report
 
-# Baixar dataset via KaggleHub
-path = kagglehub.dataset_download("rohanrao/formula-1-world-championship-1950-2020")
-print("Path to dataset files:", path)
+# Baixar dataset
+print("Baixando dataset...")
+DATASET_PATH = kagglehub.dataset_download("camnugent/sandp500")
+csv_files = [f for f in os.listdir(DATASET_PATH) if f.endswith('.csv')]
+if not csv_files:
+    raise FileNotFoundError("Nenhum arquivo CSV encontrado no dataset.")
+file_path = os.path.join(DATASET_PATH, csv_files[0])
+print(f"Usando arquivo: {file_path}")
 
-# Carregar CSVs
-results = pd.read_csv(os.path.join(path, "results.csv"))
-races = pd.read_csv(os.path.join(path, "races.csv"))
-constructors = pd.read_csv(os.path.join(path, "constructors.csv"))
+# Carregar e limpar dados
+df = pd.read_csv(file_path)
 
-# Juntar tabelas para ter ano + construtora + pontos
-df = results.merge(races[['raceId', 'year']], on='raceId')
-df = df.merge(constructors[['constructorId', 'name']], on='constructorId')
+# Ajuste de colunas
+if 'date' in df.columns:
+    df['date'] = pd.to_datetime(df['date'])
+if 'Name' in df.columns:
+    symbol_col = 'Name'
+else:
+    symbol_col = None
 
-# Agregar pontos totais por construtora por ano
-season_points = df.groupby(['year', 'constructorId', 'name'])['points'].sum().reset_index()
+# Ordenar por símbolo e data
+if symbol_col:
+    df = df.sort_values([symbol_col, 'date'])
+else:
+    df = df.sort_values('date')
 
-# Criar feature: pontos no ano anterior
-season_points['prev_points'] = season_points.groupby('constructorId')['points'].shift(1)
+# Preencher valores ausentes e remover linhas incompletas
+df = df.dropna()
 
-# Criar target: campeão do ano
-season_points['is_champion'] = season_points.groupby('year')['points'].transform(
-    lambda x: x == x.max()
-)
+# Criar features básicas
+df['Return_1d'] = df['close'].pct_change()
+df['MA_5'] = df['close'].rolling(5).mean()
+df['MA_10'] = df['close'].rolling(10).mean()
+df['Volatility_10'] = df['close'].pct_change().rolling(10).std()
 
-# Remover primeiras linhas sem histórico
-season_points = season_points.dropna(subset=['prev_points'])
+# Target: 1 se o próximo fechamento for maior que o atual
+df['Target'] = (df['close'].shift(-1) > df['close']).astype(int)
 
-# Dividir em treino (até 2019) e teste (2020)
-train = season_points[season_points['year'] < 2020]
-test = season_points[season_points['year'] == 2020]
+# Remover NaN restantes
+df = df.dropna()
 
-X_train = train[['prev_points']]
-y_train = train['is_champion']
-X_test = test[['prev_points']]
-y_test = test['is_champion']
+# Selecionar features
+features = ['Return_1d', 'MA_5', 'MA_10', 'Volatility_10']
+X = df[features]
+y = df['Target']
 
-# Criar e treinar modelo de Árvore de Decisão
-model = DecisionTreeClassifier(random_state=42, max_depth=3)  # max_depth controla complexidade
-model.fit(X_train, y_train)
+# Split treino/teste (temporal)
+split_index = int(len(df) * 0.8)
+X_train, X_test = X.iloc[:split_index], X.iloc[split_index:]
+y_train, y_test = y.iloc[:split_index], y.iloc[split_index:]
 
-# Avaliar modelo em 2020
-y_pred = model.predict(X_test)
-accuracy = accuracy_score(y_test, y_pred)
-print(f"Acurácia de validação (2020): {accuracy:.2f}")
+# Treinar árvore
+clf = DecisionTreeClassifier(max_depth=5, random_state=42)
+clf.fit(X_train, y_train)
 
-# Mostrar ranking previsto
-test['predicted'] = model.predict_proba(X_test)[:, 1]
-print(test[['year', 'name', 'points', 'predicted']].sort_values('predicted', ascending=False))
+# Avaliação
+pred = clf.predict(X_test)
+acc = accuracy_score(y_test, pred)
+print(f"Acurácia: {acc:.4f}")
+print("Relatório:\n", classification_report(y_test, pred))
 
-# Visualizar Árvore
-plt.figure(figsize=(12, 8))
-plot_tree(model, feature_names=['prev_points'], class_names=['Não Campeão', 'Campeão'], filled=True)
+# Plotar árvore
+plt.figure(figsize=(20,10))
+plot_tree(clf, feature_names=features, class_names=['Down', 'Up'], filled=True)
 plt.show()
-
-# =================================================
-# Trecho que você pediu para incluir:
-# =================================================
-# Avaliar o modelo
-y_pred = model.predict(X_test)
-accuracy = accuracy_score(y_test, y_pred)
-print(f"Acurácia: {accuracy:.2f}")
-
-# Plotar a árvore
-plt.figure(figsize=(20, 12))
-plot_tree(model, feature_names=['prev_points'], class_names=["Sem feridos", "Com feridos"], filled=True)
-plt.show()
-
-# Para imprimir na página HTML
-buffer = StringIO()
-plt.savefig(buffer, format="svg")
-print(buffer.getvalue())
