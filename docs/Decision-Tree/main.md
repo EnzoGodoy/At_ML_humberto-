@@ -1,4 +1,4 @@
-# Relatório Final – Análise e Modelo de Árvores de Decisão para Previsão de Movimentos de Ações (S&P 500)
+# Análise e Modelo de Árvores de Decisão para Previsão de Movimentos de Ações (S&P 500)
 
 ## 1. Introdução
 O objetivo deste projeto foi construir um modelo de **árvore de decisão** para prever se o preço de fechamento de ações do índice S&P 500 subiria ou cairia no próximo dia. Utilizou-se o dataset público do Kaggle [S&P 500](https://www.kaggle.com/datasets/camnugent/sandp500), realizando limpeza, engenharia de features e modelagem com validação temporal.
@@ -29,6 +29,6 @@ O dataset foi baixado via `kagglehub` e passou por:
 - **Importância de Features**: retornos recentes, volatilidade e RSI foram os indicadores mais relevantes  
 - **Árvore de Decisão**:
 
-``` python exec="on" html="1"
---8<-- "./docs/Decision-Tree/decision_tree_sp500.py"
+```markdown
+![Árvore de Decisão](docs/Decision-Tree/decision_tree.png)
 ```

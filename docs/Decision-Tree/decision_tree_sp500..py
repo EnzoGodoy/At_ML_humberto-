@@ -68,7 +68,9 @@ acc = accuracy_score(y_test, pred)
 print(f"Acurácia: {acc:.4f}")
 print("Relatório:\n", classification_report(y_test, pred))
 
-# Plotar árvore
-plt.figure(figsize=(20,10))
+# Plotar e salvar árvore
+plt.figure(figsize=(20, 10))
 plot_tree(clf, feature_names=features, class_names=['Down', 'Up'], filled=True)
-plt.show()
+output_path = "decision_tree.png"
+plt.savefig(output_path, bbox_inches='tight')
+print(f"Árvore de decisão salva em {output_path}")
