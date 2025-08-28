@@ -1,17 +1,3 @@
-"""
-Decision Tree simples para o dataset "S&P 500" (Kaggle: camnugent/sandp500)
-Objetivo: limpar a base e treinar uma árvore de decisão para prever se o próximo dia terá alta.
-
-Passos:
-1) Baixa e carrega o dataset usando kagglehub.
-2) Limpeza básica: remove NaN, converte datas, organiza colunas.
-3) Criação de features básicas (retornos, médias móveis, volatilidade).
-4) Split temporal treino/teste.
-5) Treinamento da Decision Tree e avaliação.
-
-Dependências: pandas, numpy, scikit-learn, matplotlib, kagglehub
-"""
-
 import os
 import kagglehub
 import pandas as pd
