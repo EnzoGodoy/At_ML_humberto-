@@ -32,4 +32,3 @@ Foi utilizado o dataset público do [Kaggle](https://www.kaggle.com/datasets/cam
 
 ![Decision Tree](decision_tree.png)
 
-> **Observação:** Apesar de a acurácia parecer modesta, o resultado é comparável a baselines simples e reflete a alta complexidade e aleatoriedade dos mercados financeiros.
