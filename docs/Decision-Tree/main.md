@@ -29,6 +29,5 @@ O dataset foi baixado via `kagglehub` e passou por:
 - **Importância de Features**: retornos recentes, volatilidade e RSI foram os indicadores mais relevantes  
 - **Árvore de Decisão**:
 
-```markdown
+
 ![Árvore de Decisão](docs/Decision-Tree/decision_tree.png)
-```
