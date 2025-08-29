@@ -1,39 +1,74 @@
-# Modelo de Árvore de Decisão para Previsão de Movimentos do S&P 500
+# Modelo de Árvore de Decisão para Previsão de Movimentos do S\&P 500
 
 ## 1. Introdução
-Este projeto tem como objetivo desenvolver um modelo de **árvore de decisão** para prever se o preço de fechamento diário das ações do índice **S&P 500** apresentará valorização ou desvalorização no próximo pregão.  
-Foi utilizado o dataset público do [Kaggle](https://www.kaggle.com/datasets/camnugent/sandp500), passando por etapas de **limpeza de dados**, **engenharia de features** e **modelagem preditiva** com validação temporal.
+
+Este projeto busca desenvolver um modelo de **árvore de decisão** capaz de prever movimentos de valorização ou desvalorização no próximo pregão para cada uma das **500 ações que compõem o índice S\&P 500**. O objetivo é oferecer uma visão preditiva abrangente, aplicando um pipeline reproducível que cobre desde a exploração inicial até a avaliação e documentação dos resultados.
 
 ---
 
 ## 2. Tecnologias Utilizadas
-- **Python 3.11**: linguagem principal para análise e modelagem  
-- **pandas**: tratamento e pré-processamento de dados  
-- **numpy**: operações matemáticas e vetorização  
-- **scikit-learn**: implementação do `DecisionTreeClassifier`  
-- **matplotlib**: geração de visualizações gráficas  
-- **kagglehub**: aquisição programática do dataset
+
+* **Python 3.11**
+* **pandas, numpy**
+* **scikit-learn** (DecisionTreeClassifier, métricas)
+* **matplotlib** (gráficos)
+* **joblib** (salvar modelos)
+* **kagglehub** ou entrada local de CSV
 
 ---
 
-## 3. Metodologia
-1. **Aquisição e Limpeza de Dados**: conversão de datas, remoção de valores ausentes e padronização de colunas.  
-2. **Engenharia de Features**: criação de indicadores como retornos diários, médias móveis, volatilidade, RSI e variações intradiárias.  
-3. **Definição da Variável-Alvo**: `target_up_next` (1 para valorização, 0 para desvalorização).  
-4. **Divisão Temporal dos Dados**: 80% para treino e 20% para teste, preservando a ordem cronológica para evitar **data leakage**.  
-5. **Modelagem**: uso de `DecisionTreeClassifier` com `max_depth=6` e `random_state=42`.
+## 3. Metodologia e Etapas (detalhadas)
+
+Abaixo cada etapa do projeto com exemplos práticos, entregáveis e métricas associadas (a tabela de avaliação original foi adaptada para o contexto das 500 ações).
+
+### Etapa 1 — Exploração dos Dados 
+
+* Objetivo: entender disponibilidade, qualidade e distribuição dos dados por ação.
+* Entregáveis: tabela resumo por ticker (nº de observações, datas, missing), histogramas de retornos, série temporal do preço e heatmap de correlação para features.
+* Exemplos de visualizações: `price over time`, `return distribution`, `missing value map`.
+
+### Etapa 2 — Pré-processamento 
+
+* Objetivo: tratar valores ausentes, padronizar colunas e alinhar datas entre tickers.
+* Ações: forward/backward fill por ticker quando apropriado, remoção de linhas com valores críticos faltantes, normalização z-score para features usadas pelo modelo.
+
+### Etapa 3 — Divisão dos Dados 
+
+* Objetivo: separar treino/teste preservando ordem temporal para evitar data leakage.
+* Abordagem: para cada ticker, dividir 80% inicial para treino e 20% final para teste. Alternativa: usar validação walk-forward (time-series cross-validation) para robustez.
+
+### Etapa 4 — Treinamento do Modelo 
+
+* Objetivo: treinar uma Decision Tree por ação ou um modelo global com ticker como feature.
+* Estratégias:
+
+  * **Modelo por ticker**: treina-se uma árvore para cada ação (mais preciso por ativo, mais custoso computacionalmente).
+  * **Modelo global**: treina-se um único modelo usando dados concatenados e adicionando colunas auxiliares (`ticker_id`, `sector`), para capturar padrões cross-sectional.
+* Hiperparâmetros: `max_depth`, `min_samples_leaf`, `criterion`.
+
+### Etapa 5 — Avaliação do Modelo 
+
+* Métricas por ticker e agregadas: **Acurácia**, **Precision**, **Recall**, **F1-score**, **Matriz de Confusão**, e **Sharpe ratio** de uma estratégia simples (opcional).
+* Visualizações: matriz de confusão, curva de importâncias das features, distribuição das métricas pelos setores.
+
 
 ---
 
-## 4. Resultados
-- **Acurácia**: aproximadamente 55–60%, variando conforme a ação e a janela temporal analisada.  
-- **Importância das Features**: retornos recentes, volatilidade e RSI se destacaram como indicadores relevantes.  
-- **Visualização da Árvore de Decisão**:  
+## 4. Limitações e Boas Práticas
+
+* Risco de **overfitting** com árvores muito profundas; usar poda ou limitar `max_depth`.
+* Perigo de **data leakage**: toda transformação que usa informação futura deve ser evitada ou aplicada somente no conjunto de treino.
+* Modelos simples como Decision Trees têm capacidade limitada para capturar sinais fracos em mercados eficientes.
+
+---
+
+## 5. Código e Decision Tree
+ Aqui você encontar o codigo da minha arvore e uma imagem dela 
 
 ![Decision Tree](decision_tree.png)
 
-```python 
 
+```python
 import os
 import kagglehub
 import pandas as pd
@@ -92,3 +127,22 @@ plot_tree(clf, feature_names=features, class_names=['Down', 'Up'], filled=True)
 plt.show()
 
 ```
+
+
+---
+
+## 6. Como executar (resumo rápido)
+
+1. Coloque um CSV consolidado `sandp500.csv` na raiz ou habilite `kagglehub` com credenciais.
+2. Ajuste parâmetros no topo do script (`MAX_DEPTH`, `TEST_RATIO`, `LOCAL_CSV`).
+3. Execute: `python pipeline_sp500_decision_tree.py`.
+
+---
+
+## 7. Próximos passos sugeridos
+
+* Testar **walk-forward validation** e ensembles (Random Forest, Gradient Boosting).
+* Incluir features de sentimento e macroeconômicas para capturar fatores externos.
+* Realizar backtest de uma estratégia de negociação baseada nas previsões e medir retorno ajustado ao risco.
+
+---
