@@ -142,3 +142,4 @@ nav:
   - Projeto: ./projeto/main.md
   - Atividades:
     - Decision Tree: ./Decision-Tree/main.md
+    - KNN: ./KNN/main.md
