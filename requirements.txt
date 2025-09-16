@@ -17,4 +17,3 @@ yfinance
 opendatasets
 seaborn
 scikit-learn
-LabelEncoder
