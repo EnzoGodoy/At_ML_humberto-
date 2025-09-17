@@ -134,12 +134,15 @@ extra_javascript:
 
 nav:
   - Home: index.md
+
+  - Atividades:
+    - Decision Tree: ./Decision-Tree/main.md
+    - KNN: ./KNN/main.md
+    - K-Means: ./K-Measn/main.md
+
   - Roteiros:
     - Roteiro 1: ./roteiro 1/main.md
     - Roteiro 2: ./roteiro 2/main.md
     - Roteiro 3: ./roteiro 3/main.md
     - Roteiro 4: ./roteiro 4/main.md
   - Projeto: ./projeto/main.md
-  - Atividades:
-    - Decision Tree: ./Decision-Tree/main.md
-    - KNN: ./KNN/main.md
