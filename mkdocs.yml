@@ -139,6 +139,7 @@ nav:
     - Decision Tree: ./Decision-Tree/main.md
     - KNN: ./KNN/main.md
     - K-Means: ./K-Measn/main.md
+    - Metrics and Evaluation: ./Metrics and Evaluation/main.md
 
   - Roteiros:
     - Roteiro 1: ./roteiro 1/main.md
