@@ -57,5 +57,3 @@ Ao rodar `kmeans_evaluation.py`, será criada uma pasta `kmeans_evaluation_outpu
 * Material de métricas e conceitos (para apoiar o relatório): artigos e documentação sobre Silhouette, Calinski‑Harabasz, Davies‑Bouldin e Elbow Method.
 
 ---
-
-> Se quiser, eu posso também gerar o arquivo `main.md` pronto para download (arquivo .md) ou ajustar legendas/captions das imagens. Quer que eu gere o `.md` para você baixar?
