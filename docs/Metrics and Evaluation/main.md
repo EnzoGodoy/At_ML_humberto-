@@ -31,8 +31,7 @@ Ao rodar `kmeans_evaluation.py`, será criada uma pasta `kmeans_evaluation_outpu
 * `clusters_scatter_with_centroids.png` — scatter plot (volatilidade × retorno) com clusters e centroides.
 * `silhouette_plot.png` — silhouette plot com distribuição por cluster.
 
-### Visualizações geradas (inseridas automaticamente pelo script)
-
+### Visualizações geradas 
 
 ![Elbow e Silhouette](kmeans_evaluation_outputs/elbow_silhouette_by_k.png)
 *Elbow (Inertia) e Silhouette média por K — ajuda a selecionar K.*
@@ -43,38 +42,16 @@ Ao rodar `kmeans_evaluation.py`, será criada uma pasta `kmeans_evaluation_outpu
 ![Silhouette plot](kmeans_evaluation_outputs/silhouette_plot.png)
 *Silhouette por amostra, mostrando a qualidade das atribuições por cluster.*
 
-## 5. Como rodar (passo a passo)
 
-1. Coloque `kmeans_evaluation.py` no diretório do repositório (ou ajuste o caminho `csv_path` dentro do script para apontar ao CSV correto).
-2. Abra um terminal na pasta do script.
-3. Rode: `python kmeans_evaluation.py` (ou `python3` conforme seu ambiente).
-4. Verifique a pasta `kmeans_evaluation_outputs/` para os CSVs e imagens.
-5. Commit/push da pasta `kmeans_evaluation_outputs/` (ou copie as imagens para uma pasta do repositório) para que as imagens apareçam diretamente no GitHub ao visualizar `main.md`.
-
-## 6. Interpretação rápida dos resultados (o que incluir no relatório)
+## 5. Interpretação rápida dos resultados (o que incluir no relatório)
 
 * Compare *Inertia* e *Silhouette mean* para escolher K: o *elbow* sugere K onde a redução de inertia diminui abruptamente; o K que maximiza a silhouette média também é um bom candidato.
 * Use o *silhouette per sample* para identificar ações mal atribuídas (valores negativos ou muito baixos) e discuta possíveis razões (outliers, features insuficientes).
 * Quando Calinski e Davies‑Bouldin concordarem com silhouette, a confiança no K escolhido aumenta. Caso haja divergência, discuta trade‑offs.
 * Analise os centroides e tamanhos de cluster para fornecer interpretações qualitativas (ex.: Cluster A = baixa volatilidade, retorno moderado → perfil conservador).
 
-## 7. Sugestões de melhorias e próximos passos
 
-* **Padronização**: testar `StandardScaler` nas features (mean_return, volatility) e comparar métricas com/sem escalonamento.
-* **Adicionar features**: incluir volume, indicadores técnicos ou fatores do mercado para enriquecer o espaço de características.
-* **Estabilidade**: rodar KMeans várias vezes com seeds diferentes e avaliar consistência dos rótulos (stability analysis).
-* **Validação externa**: caso existam rótulos externos (setor, segmento), calcular métricas externas (ARI, AMI) para complementar a avaliação.
-
-## 8. Trecho de código (exemplo de execução rápida)
-
-```python
-# executar avaliação básica (exemplo simplificado)
-from kmeans_evaluation import main  # se transformar o script em módulo
-# ou simplesmente
-# python kmeans_evaluation.py
-```
-
-## 9. Referências
+## 6. Referências
 
 * Repositório analisado: `all_stocks_5yr.csv` (implementação original do exercício K‑Means).
 * Material de métricas e conceitos (para apoiar o relatório): artigos e documentação sobre Silhouette, Calinski‑Harabasz, Davies‑Bouldin e Elbow Method.
