@@ -33,7 +33,6 @@ Ao rodar `kmeans_evaluation.py`, será criada uma pasta `kmeans_evaluation_outpu
 
 ### Visualizações geradas (inseridas automaticamente pelo script)
 
-> Observação: para que as imagens apareçam diretamente no `main.md` no GitHub, garanta que a pasta `kmeans_evaluation_outputs/` (com os arquivos gerados) esteja versão controlada dentro do repositório (commit/push) ou mova os arquivos gerados para uma pasta incluída no repo. Caso as imagens ainda não existam, rode primeiro `python kmeans_evaluation.py`.
 
 ![Elbow e Silhouette](kmeans_evaluation_outputs/elbow_silhouette_by_k.png)
 *Elbow (Inertia) e Silhouette média por K — ajuda a selecionar K.*
