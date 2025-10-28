@@ -1,5 +1,5 @@
 site_name: Entrega
-site_author: Ycakraft
+site_author: EnzoGodoy
 site_url: https://EnzoGodoy.github.io/At_ML_humberto-/
 repo_url: https://github.com/EnzoGodoy/At_ML_humberto-.git
 repo_name: At_ML_humberto
@@ -140,6 +140,7 @@ nav:
     - KNN: ./KNN/main.md
     - K-Means: ./K-Measn/main.md
     - Metrics and Evaluation: ./Metrics and Evaluation/main.md
+    - Random Forest: ./Randon-Forest/main.md
 
   - Roteiros:
     - Roteiro 1: ./roteiro 1/main.md
