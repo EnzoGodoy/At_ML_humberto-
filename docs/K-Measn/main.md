@@ -189,35 +189,12 @@ python K-means.py
 
 ---
 
-## 8. Limitações e Melhorias Futuras
 
-### Limitações
-
-* Escolha de `K` influencia bastante os resultados
-* Retorno médio e volatilidade não capturam toda a complexidade dos ativos
-* Dataset histórico pode não refletir risco futuro
-
-### Melhorias Futuras
-
-* Selecionar `K` com **método do cotovelo (Elbow Method)** ou **Silhouette Score**
-* Adicionar outras features (volume, indicadores técnicos, etc.)
-* Comparar com outros métodos de clustering (DBSCAN, Agglomerative)
-* Validar clusters com dados em períodos diferentes
-
----
-
-## 9. Conclusão
+## 8. Conclusão
 
 O modelo K-Means mostrou-se eficaz para agrupar ações com base em métricas simples de risco e retorno.
 Os clusters oferecem insights sobre perfis de ativos e podem ser usados como ponto de partida para estratégias de investimento ou estudos comparativos.
 
 ---
 
-## 10. Referências
-
-* Scikit-learn documentation: [KMeans](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html)
-* pandas documentation: [Data manipulation](https://pandas.pydata.org/docs/)
-* matplotlib: [Visualization techniques](https://matplotlib.org/stable/gallery/index.html)
-
----
 

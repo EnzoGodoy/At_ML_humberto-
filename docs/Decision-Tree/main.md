@@ -17,7 +17,7 @@ Este projeto busca desenvolver um modelo de **árvore de decisão** capaz de pre
 
 ---
 
-## 3. Metodologia e Etapas (detalhadas)
+## 3. Metodologia e Etapas 
 
 Abaixo cada etapa do projeto com exemplos práticos, entregáveis e métricas associadas (a tabela de avaliação original foi adaptada para o contexto das 500 ações).
 
@@ -131,7 +131,7 @@ plt.show()
 
 ---
 
-## 6. Como executar (resumo rápido)
+## 6. Como executar 
 
 1. Coloque um CSV consolidado `sandp500.csv` na raiz ou habilite `kagglehub` com credenciais.
 2. Ajuste parâmetros no topo do script (`MAX_DEPTH`, `TEST_RATIO`, `LOCAL_CSV`).
@@ -139,10 +139,3 @@ plt.show()
 
 ---
 
-## 7. Próximos passos sugeridos
-
-* Testar **walk-forward validation** e ensembles (Random Forest, Gradient Boosting).
-* Incluir features de sentimento e macroeconômicas para capturar fatores externos.
-* Realizar backtest de uma estratégia de negociação baseada nas previsões e medir retorno ajustado ao risco.
-
----

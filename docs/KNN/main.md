@@ -223,35 +223,10 @@ python KNN_model.py
 
 ---
 
-## 8. Limitações e Melhorias Futuras
 
-### Limitações:
-- **Sensibilidade à escala dos dados** → Requer normalização
-- **Custo computacional** em datasets muito grandes
-- **Performance** pode decair em dados de alta dimensionalidade
-
-### Melhorias Futuras:
-- **Otimização de hiperparâmetros** com GridSearchCV
-- **Feature engineering** adicional (indicadores técnicos)
-- **Comparação com outros algoritmos** (Random Forest, SVM, Redes Neurais)
-- **Validação temporal** para dados financeiros
-- **Ensemble methods** para melhorar robustez
-
----
-
-## 9. Conclusão
+## 8. Conclusão
 
 O modelo KNN mostrou-se eficaz para a classificação de movimentos de preços de ações, oferecendo uma abordagem intuitiva e visualmente interpretável. A combinação de técnicas de pré-processamento adequadas com a visualização do limite de decisão proporciona uma ferramenta valiosa para análise técnica de ações.
 
-**Próximos passos**: Implementar validação cruzada temporal, adicionar mais features técnicas e comparar com modelos mais complexos.
-
 ---
 
-## 10. Referências
-
-- Scikit-learn documentation: KNearestNeighbors
-- pandas documentation: Data manipulation
-- matplotlib: Visualization techniques
-- Financial Machine Learning literature
-
----
