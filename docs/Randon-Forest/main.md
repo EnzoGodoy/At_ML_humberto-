@@ -102,8 +102,7 @@ Apesar do baixo desempenho, as métricas mostram:
 
 ### Conclusões
 - O modelo Random Forest foi implementado com sucesso e executou previsões binárias sobre a tendência de preço diário.  
-- O desempenho de 50% de acurácia mostra que, **sem variáveis externas (notícias, indicadores econômicos ou de sentimento)**, é difícil prever movimentos de curto prazo no mercado de ações.  
-- O modelo, contudo, demonstra corretamente a aplicação do método e a pipeline de *Machine Learning*.
+- O desempenho de 50% de acurácia mostra que, **sem variáveis externas (notícias, indicadores econômicos ou de sentimento)**, é difícil prever movimentos de curto prazo no mercado de ações. 
 
 ---
 

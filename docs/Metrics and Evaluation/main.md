@@ -56,6 +56,5 @@ Ao rodar `kmeans_evaluation.py`, será criada uma pasta `kmeans_evaluation_outpu
 ## 6. Referências
 
 * Repositório analisado: `all_stocks_5yr.csv` (implementação original do exercício K‑Means).
-* Material de métricas e conceitos (para apoiar o relatório): artigos e documentação sobre Silhouette, Calinski‑Harabasz, Davies‑Bouldin e Elbow Method.
 
 ---
