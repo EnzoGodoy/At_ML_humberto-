@@ -43,13 +43,15 @@ Ao rodar `kmeans_evaluation.py`, será criada uma pasta `kmeans_evaluation_outpu
 *Silhouette por amostra, mostrando a qualidade das atribuições por cluster.*
 
 
-## 5. Interpretação rápida dos resultados (o que incluir no relatório)
+## 5. Interpretação rápida dos resultados 
 
-* Compare *Inertia* e *Silhouette mean* para escolher K: o *elbow* sugere K onde a redução de inertia diminui abruptamente; o K que maximiza a silhouette média também é um bom candidato.
-* Use o *silhouette per sample* para identificar ações mal atribuídas (valores negativos ou muito baixos) e discuta possíveis razões (outliers, features insuficientes).
-* Quando Calinski e Davies‑Bouldin concordarem com silhouette, a confiança no K escolhido aumenta. Caso haja divergência, discuta trade‑offs.
-* Analise os centroides e tamanhos de cluster para fornecer interpretações qualitativas (ex.: Cluster A = baixa volatilidade, retorno moderado → perfil conservador).
+* Escolhi K=3 porque o ponto de cotovelo em Inertia ocorre em K=3 e a Silhouette média é a mais alta e estável nesse mesmo valor. O Elbow indica ganho marginal de explicação após K=3, e o índice Calinski-Harabasz também favorece essa escolha, mostrando bom equilíbrio entre coesão e separação. As métricas Silhouette, Calinski-Harabasz e Davies-Bouldin convergem na indicação de K=3, aumentando a confiança na escolha.
 
+* X ativos apresentaram Silhouette negativa, indicando prováveis atribuições incorretas ou comportamento de outlier. Y ativos tiveram valores entre 0 e 0.2, sugerindo separação fraca e necessidade de revisão das features. Valores > 0.5 indicam boa separação entre clusters, enquanto < 0.2 indicam sobreposição considerável. Apesar disso, a presença de poucos pontos mal atribuídos sugere clusters estáveis, mas recomenda-se analisar isoladamente os casos negativos.
+
+* Cluster 0 (n=25): baixa volatilidade e retorno moderado, interpretado como perfil conservador. Cluster 1 (n=18): alta volatilidade e alto retorno, perfil agressivo. Cluster 2 (n=12): volatilidade e retorno equilibrados, perfil intermediário. Os centroides mostram separação clara entre perfis de risco e retorno, reforçando a coerência econômica dos agrupamentos.
+
+* A análise confirma grupos com características distintas de risco-retorno, úteis para segmentação e tomada de decisão. Como próximos passos, sugere-se testar outros algoritmos de clusterização para validar a estrutura encontrada. As limitações incluem sensibilidade à escala dos dados e influência de outliers na formação dos clusters.
 
 ## 6. Referências
 
