@@ -1,4 +1,4 @@
-# K-Means Evaluation — main.md
+# K-Means Evaluation
 
 ## 1. Resumo do projeto
 
