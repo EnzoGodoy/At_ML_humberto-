@@ -1,7 +1,7 @@
 site_name: Entrega
 site_author: EnzoGodoy
-site_url: https://EnzoGodoy.github.io/At_ML_humberto-/
-repo_url: https://github.com/EnzoGodoy/At_ML_humberto-.git
+site_url: https://enzogodoy.github.io/ML-Study
+repo_url: https://github.com/EnzoGodoy/ML-Study
 repo_name: At_ML_humberto
 
 
@@ -141,10 +141,5 @@ nav:
     - K-Means: ./K-Measn/main.md
     - Metrics and Evaluation: ./Metrics and Evaluation/main.md
     - Random Forest: ./Randon-Forest/main.md
+    - PageRank: ./pagerank/main.md
 
-  - Roteiros:
-    - Roteiro 1: ./roteiro 1/main.md
-    - Roteiro 2: ./roteiro 2/main.md
-    - Roteiro 3: ./roteiro 3/main.md
-    - Roteiro 4: ./roteiro 4/main.md
-  - Projeto: ./projeto/main.md
