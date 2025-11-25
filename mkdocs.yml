@@ -11,14 +11,14 @@ theme:
     # primary: grey
     # Light mode
     - scheme: default
-      primary: grey
+      primary: indigo
       toggle:
         icon: material/toggle-switch-off-outline
         name: Switch to dark mode
 
     # Palette toggle for automatic mode
     - media: "(prefers-color-scheme)"
-      primary: grey
+      primary: indigo
       toggle:
         icon: material/toggle-switch
         name: Switch to light mode
@@ -26,14 +26,14 @@ theme:
     # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default 
-      primary: grey
+      primary: indigo
       toggle:
         icon: material/toggle-switch-off-outline
         name: Switch to dark mode
 
     # Palette toggle for dark mode
     - media: "(prefers-color-scheme: dark)"
-      primary: grey
+      primary: indigo
       scheme: slate
       toggle:
         icon: material/toggle-switch
@@ -111,7 +111,7 @@ plugins:
       enable_creation_date: true
   - git-authors
   - git-committers:
-      repository: EnricoDiGioia/EnricoDiGioia.github.com
+      repository: EnricoDiGioia/EnricoDiGioia.github.com  
       branch: main
   - search
   - badges
@@ -131,6 +131,9 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   - https://fastly.jsdelivr.net/npm/jquery/dist/jquery.min.js
   - https://fastly.jsdelivr.net/npm/echarts/dist/echarts.min.js
+
+extra_css:
+  - assets/stylesheets/custom.css
 
 nav:
   - Home: index.md

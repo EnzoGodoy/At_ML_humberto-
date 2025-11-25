@@ -1,31 +1,18 @@
-# Template de Entrega
+## Exploração de machine learning
 
 
-#TESTE
+## Autor
 
-???+ info inline end "Edição"
+ Enzo de moraes Godoy
 
-    2025.1
-
-
-## Grupo
-
-1. Enzo de moraes Godoy
-
-
-
-!!! tip "Instruções"
-
-    Vocês devem utilizar este template como um bloco de notas para registrar o que foi feito e o que falta fazer. Vocês devem adicionar as informações necessárias.
-    O template deve ser editado e atualizado a cada entrega, registrando assim a data de entrega e o que foi feito até o momento via Git.
 
 ## Entregas
 
-- [x] Roteiro 1 - Data 23/02/2025
-- [ ] Roteiro 2
-- [ ] Roteiro 3
-- [ ] Roteiro 4
-- [ ] Projeto
+- [x] Decision-Tree 
+- [x] K-means
+- [x] KNN
+- [x] Metrics and evaluation
+- [x] Pagerank
 
 ## Diagramas
 
