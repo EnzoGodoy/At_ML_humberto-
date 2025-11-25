@@ -1,0 +1,86 @@
+/* Custom site styling for a clean, professional look
+   - Uses Inter for body text and Merriweather for headings
+   - Adjusts line-height, spacing, link colors and code block appearance
+*/
+
+/* Import Nunito from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap');
+
+/* Base text */
+body, .md-typeset, .md-content {
+  font-family: 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: #111827; /* deep charcoal */
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+/* Headings — use Nunito for consistent, modern look */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Nunito', 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
+  color: #0f172a; /* dark slate */
+  letter-spacing: -0.2px;
+  margin-top: 1.25em;
+  margin-bottom: 0.6em;
+  line-height: 1.25;
+}
+
+/* More distinct paragraph spacing */
+.md-typeset p {
+  margin: 0 0 1.05em 0;
+  color: #273449; /* slightly muted */
+}
+
+/* Improve code block appearance */
+.md-typeset code, pre code {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, 'Courier New', monospace;
+  font-size: 0.95em;
+}
+
+/* Block code area subtle background */
+.md-typeset pre {
+  background: rgba(15, 23, 42, 0.03);
+  border-radius: 8px;
+  padding: 0.9rem;
+  overflow: auto;
+  box-shadow: none;
+}
+
+/* Links — clean accent color */
+a, .md-nav__link {
+  color: #6ba6ff; /* professional blue */
+}
+
+a:hover {
+  color: #a2a4a6;
+  text-decoration: underline;
+}
+
+/* Narrower content width for better readability */
+.md-content__inner {
+  max-width: 900px;
+}
+
+/* Make the site a bit more airy */
+.md-main {
+  padding-top: 34px;
+  padding-bottom: 56px;
+}
+
+/* Accent for admonitions (notes, tips) */
+.md-typeset .admonition {
+  border-left-width: 4px;
+  border-radius: 6px;
+  padding: 0.85rem 1rem;
+}
+
+/* Improve table styling */
+.md-typeset table th, .md-typeset table td {
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+/* Footer / small text */
+.md-footer {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
