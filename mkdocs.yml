@@ -145,4 +145,5 @@ nav:
     - Metrics and Evaluation: ./Metrics and Evaluation/main.md
     - Random Forest: ./Randon-Forest/main.md
     - PageRank: ./pagerank/main.md
+    - SVM: ./SMV/main.md
 
